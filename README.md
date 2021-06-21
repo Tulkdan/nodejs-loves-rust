@@ -28,8 +28,19 @@ First, you need to have the dependencies installed:
 To build the native module it's simple with cargo, just run `cargo build` (or `cargo build --release` for optimized code).
 Then you need to copy the compiled code to the root of project, the compiled should be inside of `target/debug` and should be names `librust_addon.so` (if you builded with `--release` it hsould be inside `target/release`).
 
-## Running project
+## Benchmarking
 
-I divided each module into function and passing the "module" name into via cli.
+The benchmarking was made using [hyperfine](https://github.com/sharkdp/hyperfine) via CLI, you can installed yourself and run in your machine with the following command:
 
-Just run `npm start {module}` to run the specific module to check it out.
+`hyperfine 'node index.js <module>' 'node native.js <module>'`
+
+Although, this was the benchmark on my machine and at the time of this writing:
+
+### Hello method
+![](./benchmark/hello.png)
+
+### Function method
+![](./benchmark/function.png)
+
+### Async method
+![](./benchmark/async.png)
